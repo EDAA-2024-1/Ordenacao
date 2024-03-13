@@ -8,7 +8,7 @@ package com.mycompany.ordenacao_produto;
  *
  * @author rafaelamoreira
  */
-public class Produto {
+public class Produto implements Comparable<Produto> {
 
     double preco;
     String nome;
@@ -21,5 +21,10 @@ public class Produto {
     @Override
     public String toString() {
         return nome + ": $" + preco;
+    }
+
+    @Override
+    public int compareTo(Produto o) {
+        return Double.compare(this.preco, o.preco);
     }
 }

@@ -19,7 +19,7 @@ public class Ordenacao_Nomes {
 
         System.out.println("Quantos nomes você deseja inserir?");
         int n = scanner.nextInt();
-        scanner.nextLine(); // Consumir a nova linha
+        scanner.nextLine(); 
 
         for (int i = 0; i < n; i++) {
             System.out.println("Digite o nome #" + (i + 1) + ":");

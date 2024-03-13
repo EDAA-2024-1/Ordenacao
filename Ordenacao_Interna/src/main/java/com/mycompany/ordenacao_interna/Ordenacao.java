@@ -44,20 +44,23 @@ public class Ordenacao {
     }
 
     public static void bubbleSort(Item[] v) {
-        boolean trocou;
+        // Melhorado: reduz o 'n' porque os últimos elementos já estão no lugar
+        int n = v.length;
+        boolean swapped;
         do {
-            trocou = false;
-            for (int i = 0; i < v.length - 1; i++) {
+            swapped = false;
+            for (int i = 0; i < n - 1; i++) {
                 if (v[i].compara(v[i + 1]) > 0) {
                     Item temp = v[i];
                     v[i] = v[i + 1];
                     v[i + 1] = temp;
-                    trocou = true;
+                    swapped = true;
                 }
             }
-        } while (trocou);
+            n--;
+        } while (swapped);
     }
-
+ 
     public static void selectionSort(Item[] v) {
         for (int i = 0; i < v.length - 1; i++) {
             int minIdx = i;

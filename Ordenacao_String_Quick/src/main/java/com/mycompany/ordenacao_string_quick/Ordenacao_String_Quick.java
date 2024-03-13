@@ -21,7 +21,7 @@ public class Ordenacao_String_Quick {
         
         char[] arr = input.toLowerCase().toCharArray();
 
-        QuickSort.quickSort(arr, 0, arr.length - 1);
+        QuickSort.quickSort(arr);
 
         System.out.println("String ordenada: " + new String(arr));
     }

@@ -36,7 +36,7 @@ public class Ordenacao_Produto {
         System.out.println("\nArranjo: Produtos antes da ordenação:");
         imprimir(produtos_arranjo);
 
-        QuickSort.quickSortArranjo(produtos_arranjo, 0, produtos_arranjo.length - 1);
+        QuickSort.quickSortArranjo(produtos_arranjo);
 
         System.out.println("\nArranjo: Produtos após a ordenação:");
         imprimir(produtos_arranjo);
@@ -51,7 +51,7 @@ public class Ordenacao_Produto {
         System.out.println("\nLista: Produtos antes da ordenação:");
         imprimir(produtos_lista);
 
-        QuickSort.quickSortLista(produtos_lista, 0, produtos_lista.size() - 1);
+        QuickSort.quickSortLista(produtos_lista);
 
         System.out.println("\nLista: Produtos após a ordenação:");
         imprimir(produtos_lista);

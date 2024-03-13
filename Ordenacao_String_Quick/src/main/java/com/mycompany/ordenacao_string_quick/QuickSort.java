@@ -10,38 +10,37 @@ package com.mycompany.ordenacao_string_quick;
  */
 public class QuickSort {
 
-    public static void quickSort(char[] arr, int esq, int dir) {
+    private static void ordena(char[] c, int esq, int dir) {
         if (esq < dir) {
-            // Encontra o índice do pivô
-            int pi = partition(arr, esq, dir);
-
-            // Ordena recursivamente os elementos antes e depois da partição
-            quickSort(arr, esq, pi - 1);
-            quickSort(arr, pi + 1, dir);
+            int[] p = partition(c, esq, dir);
+            ordena(c, esq, p[1]);
+            ordena(c, p[0], dir);
         }
     }
 
-    private static int partition(char[] arr, int esq, int dir) {
-        char pivot = arr[dir];
-        int i = (esq - 1); // Índice do menor elemento
-        for (int j = esq; j < dir; j++) {
-            // Se o elemento atual é menor que ou igual ao pivô
-            if (arr[j] <= pivot) {
+    private static int[] partition(char[] c, int esq, int dir) {
+        int i = esq, j = dir;
+        char x = c[(i + j) / 2]; // Pivô
+        while (i <= j) {
+            while (c[i] < x) {
                 i++;
-
-                // Troca arr[i] e arr[j]
-                char temp = arr[i];
-                arr[i] = arr[j];
-                arr[j] = temp;
+            }
+            while (c[j] > x) {
+                j--;
+            }
+            if (i <= j) {
+                char temp = c[i];
+                c[i] = c[j];
+                c[j] = temp;
+                i++;
+                j--;
             }
         }
+        return new int[]{i, j}; // Retorna ambos os limites
+    }
 
-        // Troca arr[i+1] e arr[dir] (ou pivô)
-        char temp = arr[i + 1];
-        arr[i + 1] = arr[dir];
-        arr[dir] = temp;
-
-        return i + 1;
+    public static void quickSort(char[] c) {
+        ordena(c, 0, c.length - 1);
     }
 
 }

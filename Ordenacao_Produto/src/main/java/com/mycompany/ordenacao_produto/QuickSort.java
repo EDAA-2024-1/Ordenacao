@@ -11,65 +11,75 @@ import java.util.ArrayList;
  * @author rafaelamoreira
  */
 public class QuickSort {
-    public static void quickSortArranjo(Produto[] produtos, int esq, int dir) {
-        if (esq < dir) {
-            int pi = partitionArranjo(produtos, esq, dir);
 
-            quickSortArranjo(produtos, esq, pi - 1);
-            quickSortArranjo(produtos, pi + 1, dir);
+    private static void ordenaArranjo(Produto[] produtos, int esq, int dir) {
+        if (esq < dir) {
+            int[] p = partitionArranjo(produtos, esq, dir);
+            ordenaArranjo(produtos, esq, p[1]);
+            ordenaArranjo(produtos, p[0], dir);
         }
     }
 
-    private static int partitionArranjo(Produto[] produtos, int esq, int dir) {
-        Produto pivot = produtos[dir];
-        int i = (esq - 1);
-        for (int j = esq; j < dir; j++) {
-            if (produtos[j].preco < pivot.preco) {
-                i++;
+    private static int[] partitionArranjo(Produto[] produtos, int esq, int dir) {
+        int i = esq, j = dir;
+        Produto x = produtos[(i + j) / 2]; // Pivô
+        while (i <= j) {
 
-                // troca
+            while (produtos[i].compareTo(x) < 0) {
+                i++;
+            }
+            while (produtos[j].compareTo(x) > 0) {
+                j--;
+            }
+            if (i <= j) {
                 Produto temp = produtos[i];
                 produtos[i] = produtos[j];
                 produtos[j] = temp;
+                i++;
+                j--;
             }
         }
-
-        // troca produtos[i+1] e produtos[dir] (ou pivot)
-        Produto temp = produtos[i + 1];
-        produtos[i + 1] = produtos[dir];
-        produtos[dir] = temp;
-
-        return i + 1;
+        return new int[]{i, j}; // Retorna ambos os limites
     }
-    
-    public static void quickSortLista(ArrayList<Produto> produtos, int esq, int dir) {
-        if (esq < dir) {
-            int pi = partitionLista(produtos, esq, dir);
 
-            quickSortLista(produtos, esq, pi - 1);
-            quickSortLista(produtos, pi + 1, dir);
+    public static void quickSortArranjo(Produto[] p) {
+        ordenaArranjo(p, 0, p.length - 1);
+    }
+
+    private static void ordenaLista(ArrayList<Produto> produtos, int esq, int dir) {
+        if (esq < dir) {
+            ArrayList<Integer> p = partitionLista(produtos, esq, dir);
+            ordenaLista(produtos, esq, p.get(1));
+            ordenaLista(produtos, p.get(0), dir);
         }
     }
 
-    private static int partitionLista(ArrayList<Produto> produtos, int esq, int dir) {
-        Produto pivot = produtos.get(dir);
-        int i = (esq - 1);
-        for (int j = esq; j < dir; j++) {
-            if (produtos.get(j).preco < pivot.preco) {
-                i++;
+    public static void quickSortLista(ArrayList<Produto> produtos) {
+        ordenaLista(produtos, 0, produtos.size() - 1);
+    }
 
-                // Troca
+    private static ArrayList<Integer> partitionLista(ArrayList<Produto> produtos, int esq, int dir) {
+        int i = esq, j = dir;
+        Produto x = produtos.get((i + j) / 2); // pivo
+        while (i <= j) {
+            while (produtos.get(i).compareTo(x) < 0) {
+                i++;
+            }
+            while (produtos.get(j).compareTo(x) > 0) {
+                j--;
+            }
+            if (i <= j) {
                 Produto temp = produtos.get(i);
                 produtos.set(i, produtos.get(j));
                 produtos.set(j, temp);
+                i++;
+                j--;
             }
         }
-
-        // Troca
-        Produto temp = produtos.get(i + 1);
-        produtos.set(i + 1, produtos.get(dir));
-        produtos.set(dir, temp);
-
-        return i + 1;
+        ArrayList<Integer> limites = new ArrayList<>();
+        limites.add(i);
+        limites.add(j);
+        return limites; // Retorna ambos os limites
     }
+
 }

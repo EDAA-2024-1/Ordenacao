@@ -27,3 +27,5 @@ replay_pid*
 *.DS_Store
 .target/
 /Ordenacao_Pessoa/target/
+/Ordenacao_Produto/target/
+/Ordenacao_String_Quick/target/
