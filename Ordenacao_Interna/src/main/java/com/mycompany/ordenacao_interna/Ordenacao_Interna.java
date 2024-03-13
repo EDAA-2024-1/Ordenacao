@@ -34,18 +34,17 @@ public class Ordenacao_Interna {
     }
 
     public static void main(String[] args) {
-        int tam = 20;
-        MeuItem[] a = new MeuItem[tam]; 
-        MeuItem[] b = new MeuItem[tam]; 
+        int tam = 5;
+        MeuItem[] a = new MeuItem[tam];
+        MeuItem[] b = new MeuItem[tam];
 
         // Inicializa os arrays
         for (int i = 0; i < tam; i++) {
-            a[i] = new MeuItem(i + 1); 
+            a[i] = new MeuItem(i + 1);
         }
 
         // Embaralha o array 'a' e copia para 'b'
         PermutacaoRandomica.permut(a, tam);
-        copia(a, b, tam);
 
         // Imprime o array desordenado
         System.out.println("Desordenado: ");
@@ -61,10 +60,10 @@ public class Ordenacao_Interna {
 
 // Método auxiliar para testar e imprimir os resultados dos algoritmos de ordenação
     private static void testarOrdenacao(String nomeAlgoritmo, Consumer<MeuItem[]> algoritmoOrdenacao, MeuItem[] original, MeuItem[] paraOrdenar, int tam) {
-        copia(original, paraOrdenar, tam); 
+        copia(original, paraOrdenar, tam);
         System.out.println(nomeAlgoritmo);
-        algoritmoOrdenacao.accept(paraOrdenar); 
-        testa(paraOrdenar, tam); 
+        algoritmoOrdenacao.accept(paraOrdenar);
+        testa(paraOrdenar, tam);
     }
 
 }

@@ -14,16 +14,16 @@ public class SelectionSort {
 
     public static void selectionSortArranjo(Jogador[] jogadores) {
         for (int i = 0; i < jogadores.length - 1; i++) {
-            int max_idx = i;
+            int min_idx = i;
             for (int j = i + 1; j < jogadores.length; j++) {
-                if (jogadores[j].pontuacao > jogadores[max_idx].pontuacao) {
-                    max_idx = j;
+                if (jogadores[j].pontuacao > jogadores[min_idx].pontuacao) {
+                    min_idx = j;
                 }
             }
 
             // Troca
-            Jogador temp = jogadores[max_idx];
-            jogadores[max_idx] = jogadores[i];
+            Jogador temp = jogadores[min_idx];
+            jogadores[min_idx] = jogadores[i];
             jogadores[i] = temp;
         }
     }
